@@ -1,0 +1,82 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.card-item-container {
+  width: 33%;
+  padding: 20px;
+  height: 300px;
+}
+.card-item-button {
+  text-align: center;
+  background-color: purple;
+}
+.flip-card {
+  width: 100%;
+  height: 100%;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  padding-bottom: 10px;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  /* background-image: url("https://s3.envato.com/files/252189512/preview.jpg"); */
+  color: rgb(145, 133, 133);
+  background-color: #300e44;
+  /* opacity: 0.75; */
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: #300e44;
+  color: white;
+  transform: rotateY(180deg);
+}
+.title {
+  color: rgb(206, 69, 140);
+  font-size: 26px;
+  text-align: center;
+}
+.title-span {
+  font-family: cursive bold;
+  color: #ffffff;
+}
+
+h3 {
+  color: #c9cc26;
+  text-align: center;
+}
+.new-intro-container {
+  color: #ffffff;
+}
+
+.more-btn-primary {
+  display: flex;
+  align-items: center;
+}
