@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, Error, Input, FormField, Label, onAuth } from "../styles";
+import {
+  Button,
+  Error,
+  Input,
+  FormField,
+  Label,
+  onAuth,
+} from "../styles/styles";
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");

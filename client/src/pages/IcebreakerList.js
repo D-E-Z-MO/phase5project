@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "../components/FlipCard.css";
-import NewIcebreaker from "./NewIcebreaker";
 import MoreButton from "../components/MoreButton.js";
 import { FlipCard } from "../components/FlipCard.js";
 
@@ -26,7 +24,7 @@ function IcebreakerList() {
     );
   };
 
-  // get all icebreakers
+  // get all user icebreakers
   useEffect(() => {
     fetch("/icebreakers")
       .then((res) => res.json())
@@ -38,7 +36,7 @@ function IcebreakerList() {
     //PATCH
     let flames_a = flames + 1;
     fetch(`/icebreakers/${id}`, {
-      method: "POST",
+      method: "PATCH",
       body: JSON.stringify({ flames: flames_a }),
     }).then(() => {
       setIceBreakers(

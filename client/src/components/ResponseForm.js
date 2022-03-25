@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, FormField, Label } from "../styles";
+import { Button, Input, FormField, Label } from "../styles/styles";
 
 function ResponseForm({ user, icebreaker, history, addIcebreaker }) {
   const [response, setResponse] = useState("");

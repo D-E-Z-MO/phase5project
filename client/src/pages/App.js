@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router";
 import NewIcebreaker from "./NewIcebreaker.js";
-import NavBar from "./NavBar";
+import NavBar from "../components/NavBar";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
-import SignUpForm from "./SignUpForm";
+import SignUpForm from "../components/SignupForm";
+import IcebreakerList from "./IcebreakerList.js";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -47,8 +48,11 @@ function App() {
               <Route path="/me">
                 <Home user={user} />
               </Route>
-              <Route path="/new">
-                <NewIcebreaker user={user} addIcebreaker={addIceBreaker} />
+              <Route path="/newicebreakers">
+                <NewIcebreaker user={user} />
+              </Route>
+              <Route path="/icebreakers">
+                <IcebreakerList user={user} addIcebreaker={addIceBreaker} />
               </Route>
             </Switch>
           </main>

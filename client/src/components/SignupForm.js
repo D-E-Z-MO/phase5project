@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, FormField, Label } from "../styles";
+import { Button, Input, FormField, Label, Error } from "../styles/styles";
 
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -14,7 +14,7 @@ function SignUpForm({ onLogin }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setErrors([]);
+    // setErrors([]);
     if (e.target.password !== e.target.passwordConfirmation) {
       setIsLoading(true);
       fetch("/signup", {
@@ -73,11 +73,11 @@ function SignUpForm({ onLogin }) {
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>
-      {/* <FormField>
+      <FormField>
         {errors.map((err) => (
           <Error key={err}>{err}</Error>
         ))}
-      </FormField> */}
+      </FormField>
     </form>
   );
 }

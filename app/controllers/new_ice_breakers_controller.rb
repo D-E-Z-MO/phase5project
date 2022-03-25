@@ -1,10 +1,10 @@
 class NewIceBreakersController < ApplicationController
   def index
-    render json: NewIceBreakers.all
+    render json: NewIceBreaker.all
   end
 
   def show 
-    newIceBreaker = NewIceBreaker.find_by(params[:id]), include: :reponses
+    newIceBreaker = NewIceBreaker.find_by(params[:id])
   end
 
 

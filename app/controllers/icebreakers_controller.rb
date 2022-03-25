@@ -5,7 +5,7 @@ class IcebreakersController < ApplicationController
   end
 
   def show
-    render json: Icebreaker.find_by(params[:user_id]).all
+    render json: Icebreaker.find_by(params[:user_id])
   end
 
   def create
