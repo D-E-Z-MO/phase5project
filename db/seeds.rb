@@ -3,7 +3,7 @@ puts 'Deleting Old Data...🗑'
 # User.destroy_all
 NewIceBreaker.destroy_all
 # Icebreaker.destroy_all
-# Response.destroy_all
+Response.destroy_all
 
 puts '🌱...Seeding Data...🌱'
 
@@ -35,31 +35,11 @@ NewIceBreaker.create!(content: "If you could instantly become an expert in somet
 NewIceBreaker.create!(content: "Would you rather live in the ocean or on the moon?", flames: 0,tags: "would you rather, funny, life" )
 NewIceBreaker.create!(content: "Would you rather meet your travel back in time to meet your ancestors or to the future to meet your descendants?", flames: 0,tags: "would you rather, family, life" )
 
-puts '🌱...Done Seeding Data...🌱'
-# puts 'Creating Icebreakers...'
-# Icebreaker.create!(content: "Would you rather live where it only snows or the temperature never falls below 100 degrees?", flames: 0,tags: "would you rather, basic, life")
-# Icebreaker.create!(content: "Did you attend college? What was your major, or what would it have been?", flames: 0,tags: "history, life, potentially sensitive" )
-# Icebreaker.create!(content: "What was your dream job when you were a kid?", flames: 0,tags: "childhood, history, work" )
-# Icebreaker.create!(content: "Are there any interesting things your name spells with the letters rearranged?", flames: 0,tags: "PIDK, general" )
-# Icebreaker.create!(content: "On what reality show would you most like to appear?", flames: 0,tags: "if you could, pop culture, PIDK" )
-# Icebreaker.create!(content: " Which of Snow White’s seven dwarfs describes you best (Bashful, Doc, Dopey, Grumpy, Happy, Sleepy or Sneezy)?", flames: 0,tags: "pop culture, personality" )
-# Icebreaker.create!(content: "Are you a listener or a talker?", flames: 0,tags: "would you rather, personality" )
-# Icebreaker.create!(content: "If you could only listen to one album for the rest of your life, what would it be?", flames: 0,tags: "if you could, favorites, music" )
-# Icebreaker.create!(content: "What was the worst movie you’ve ever watched?", flames: 0,tags: "favorites, pop culture, media, PIDK" )
-# Icebreaker.create!(content: "Would you rather have invisibility or flight?", flames: 0,tags: "would you rather, super powers")
-# Icebreaker.create!(content: "Would you prefer to always be slightly late or always be an hour early?", flames: 0,tags: "would you rather, personality" )
-# Icebreaker.create!(content: "What was your first job?", flames: 0,tags: "personality, history, basic" )
-# Icebreaker.create!(content: "What year would you visit if you had a time machine?", flames: 0,tags: "if you could, history, PIDK" )
-# Icebreaker.create!(content: "What's your favorite breakfast cereal or breakfast food?", flames: 0,tags: "favorites, basic" )
-# Icebreaker.create!(content: "What’s something new or interesting you’ve learned recently?", flames: 0,tags: "personality, history, basic" )
-# Icebreaker.create!(content: "If you could safely eat any inedible object, what would it be?", flames: 0,tags: "funny, personality, PIDK" )
-# Icebreaker.create!(content: "If you did not have to sleep, how would you spend the extra 8 hours?", flames: 0,tags: "basic, personality, PIDK" )
-# Icebreaker.create!(content: "What season would you be? Why?", flames: 0,tags: "basic, personality" )
-# Icebreaker.create!(content: "If you did not have to sleep, how would you spend the extra 8 hours?", flames: 0,tags: "basic, personality, PIDK" )
-# Icebreaker.create!(content: "Do you work better with or without music? What are you listening to while you work?", flames: 0,tags: "basic, personality, work" )
-# Icebreaker.create!(content: "What’s a TV show you recommend to everyone?", flames: 0,tags: "basic, pop culture, television" )
-# Icebreaker.create!(content: "Where did you grow up? What did you like most about it? Dislike most?", flames: 0,tags: "basic, personality, PIDK" )
 
-# puts 'Creating Reponses...'
-# Response.create!(new_ice_breaker_id:i1, response:"just do it")
+
+puts "Seeding Response..."
+# Response.create!(response:"yolo", user_id: 10, new_ice_breaker_id: 16)
+
+puts '🌱...Done Seeding Data...🌱'
+
 

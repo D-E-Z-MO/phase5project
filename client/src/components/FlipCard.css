@@ -72,8 +72,11 @@ h3 {
   color: #c9cc26;
   text-align: center;
 }
+p {
+  color: #dcd9e2;
+}
 .new-intro-container {
-  color: #ffffff;
+  color: #8a7e7e;
 }
 
 .more-btn-primary {

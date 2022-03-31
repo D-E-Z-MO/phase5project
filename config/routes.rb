@@ -7,12 +7,13 @@ Rails.application.routes.draw do
     get "/me", to: "users#show"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
-    # post "/new", to: "icebreakers#create"
-    post "/icebreakers", to: "icebreaker#index"
-    post `/icebreakers/${id}`, to: "icebreakers#show"
+    post "/icebreakers/:id", to: "icebreakers#create"
+    delete "/icebreakers/icebreakers/:id", to: "icebreakers#destroy"
+    get "/icebreakers", to: "icebreakers#index"
     get "/newicebreakers", to: "new_ice_breakers#index"
-    delete "/response", to: "responses#delete"
-    post "/response", to: "responses#create"
+    delete "/responses/:id", to: "responses#delete"
+    post "/responses/:id", to: "responses#create"
+    get "/responses/:id", to: "responses#index"
 
 
   get '*path',

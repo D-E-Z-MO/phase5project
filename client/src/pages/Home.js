@@ -18,7 +18,7 @@ function Home({ user }) {
         icebreakers".
       </h3>
 
-      <NewIcebreakerList />
+      <NewIcebreakerList user={user} />
     </>
   );
 }

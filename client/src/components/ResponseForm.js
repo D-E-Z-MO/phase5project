@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import { Button, Input, FormField, Label } from "../styles/styles";
 
-function ResponseForm({ user, icebreaker, history, addIcebreaker }) {
+function ResponseForm({ user, id, handleFetchList }) {
   const [response, setResponse] = useState("");
   const [errors, setErrors] = useState([]);
+
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/responses", {
+    fetch(`/responses/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        response,
+        new_ice_breaker_id: id,
+        response: response,
+        user_id: user.id,
       }),
     }).then((r) => {
       if (r.ok) {
-        history.push("/");
-        addIcebreaker(r);
+        handleFetchList();
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -26,7 +28,7 @@ function ResponseForm({ user, icebreaker, history, addIcebreaker }) {
   return (
     <form onSubmit={handleSubmit}>
       <FormField>
-        <Label>Description:</Label>
+        <Label>Leave a response:</Label>
         <Input
           type="text-area"
           value={response}
@@ -34,13 +36,18 @@ function ResponseForm({ user, icebreaker, history, addIcebreaker }) {
         />
       </FormField>
       <cite>
-        created by: {user} {Date().toLocaleString("en-US")}
+        created by: {user.username} 🌐{Date().toLocaleString("en-US")}
       </cite>
       <FormField>
         <Button color="primary" type="submit">
           Submit Response
         </Button>
       </FormField>
+      <div>
+        {errors.map((err) => (
+          <p>error: {err.message}</p>
+        ))}
+      </div>
     </form>
   );
 }

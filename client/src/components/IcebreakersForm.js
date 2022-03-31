@@ -1,46 +1,39 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { Button, Error, FormField, Input, Label } from "../styles";
+import { Button, Error, FormField, Input, Label } from "../styles/styles";
 import "../components/FlipCard.css";
 
 export default function IcebreakersForm({
   user,
-  seeIceBreakers,
+  addIceBreaker,
   setIceBreakers,
 }) {
-  const [category, setCategory] = useState("");
   const [content, setContent] = useState("");
   const [tags, setTags] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [response, setResponse] = useState("");
   const history = useHistory();
-  const flames = 0;
-  const addIceBreaker = (i) => {
-    setIceBreakers((icebreakers) => [...icebreakers, i]);
-  };
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/icebreakers", {
+    fetch(`/icebreakers/${user.id}`, {
       method: "POST",
       headers: {
-        "Content-category": "application/json",
+        "Content-type": "application/json",
       },
       body: JSON.stringify({
-        content: { content },
-        category: { category },
+        content: content,
+        tags: tags,
         flames: 0,
-        user: user,
-        response: { response },
       }),
     }).then((r) => {
       setIsLoading(false);
+      console.log(r);
       if (r.ok) {
-        history.push("/");
-        addIceBreaker(r);
+        history.push(`/icebreakers/${user.id}`);
+        setIceBreakers(r);
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -52,20 +45,17 @@ export default function IcebreakersForm({
       <WrapperChild>
         <div>
           <div className="new-intro-container">
-            <h2>Create New Intro, also known as icebreakers</h2>
-            <h4>Create tags to search by and give a question or activity. </h4>
+            <h2>Create a new intro, also known as icebreakers</h2>
+            <h4>Create tags and provide a question or activity.</h4>
           </div>
           <form onSubmit={handleSubmit}>
             <div>
-              <Label>Category: </Label>
-              <select
-                category="text"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="Activity">Activity</option>
-                <option value="Question">Question</option>
-              </select>
+              <Label>Tags: </Label>
+              <Input
+                category="string"
+                value={tags}
+                onChange={(e) => setTags(e.target.value)}
+              />
             </div>
             <FormField>
               <Label>Write your icebreaker:</Label>
@@ -73,15 +63,6 @@ export default function IcebreakersForm({
                 category="string"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-              />
-              <Label>
-                Give your response to the question or outcome of the activty
-                here:
-              </Label>
-              <Input
-                category="string"
-                value={response}
-                onChange={(e) => setResponse(e.target.value)}
               />
             </FormField>
             <cite>
@@ -93,16 +74,16 @@ export default function IcebreakersForm({
               </Button>
             </FormField>
             <FormField>
-              {errors.map((err) => (
+              {/* {errors.map((err) => (
                 <Error key={err}>{err}</Error>
-              ))}
+              ))} */}
             </FormField>
           </form>
         </div>
       </WrapperChild>
       <div className="">
-        <h1>{content}</h1>
-        <h3>{category}</h3>
+        <h1>{tags}</h1>
+        <h3>{content}</h3>
       </div>
     </Wrapper>
   );

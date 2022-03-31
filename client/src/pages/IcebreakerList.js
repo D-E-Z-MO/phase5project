@@ -1,35 +1,40 @@
 import { useEffect, useState } from "react";
 import "../components/FlipCard.css";
 import MoreButton from "../components/MoreButton.js";
-import { FlipCard } from "../components/FlipCard.js";
+import { IceCard } from "../components/IceCard.js";
 
 function IcebreakerList() {
   let initialPage = 0;
-  const [seeIceBreakers, setIceBreakers] = useState([]);
+  const [iceBreakers, setIceBreakers] = useState([]);
   const [currentPage, setPage] = useState(initialPage);
 
+  //next set of cards per page
   const handleNextPage = () => {
     setPage(currentPage + 1);
   };
 
+  // remove user icebreakers
   const removeIntro = (id) => {
     fetch(`icebreakers/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
+    }).then(() => {
+      setIceBreakers(
+        iceBreakers.filter((i) => {
+          return i.id !== id;
+        }),
+        window.location.reload()
+      );
     });
-    setIceBreakers(
-      seeIceBreakers.filter((i) => {
-        return i.id !== id;
-      })
-    );
   };
 
   // get all user icebreakers
   useEffect(() => {
-    fetch("/icebreakers")
+    fetch(`/icebreakers`)
       .then((res) => res.json())
       .then((data) => setIceBreakers(data));
   }, []);
+  console.log(iceBreakers);
 
   //update icebreakers
   const updateIcebreaker = (id, flames) => {
@@ -40,7 +45,7 @@ function IcebreakerList() {
       body: JSON.stringify({ flames: flames_a }),
     }).then(() => {
       setIceBreakers(
-        seeIceBreakers.map((ice) => {
+        iceBreakers.map((ice) => {
           if (ice.id === id) {
             ice.flames = flames;
           }
@@ -49,28 +54,39 @@ function IcebreakerList() {
       );
     });
   };
-  const intros = seeIceBreakers.slice(currentPage * 3, (currentPage + 1) * 3);
 
   return (
-    <div className="card-container">
-      {Array.from(intros).map((ice) => (
-        <div className="card-item-container">
-          <FlipCard
-            content={ice.content}
-            tags={ice.tags}
-            flames={ice.flames}
-            key={ice.id}
-            removeIntro={removeIntro}
-            updateIcebreaker={() => updateIcebreaker(ice.id, ice.flames + 1)}
-          />
+    <>
+      {iceBreakers && iceBreakers.length > 0 ? (
+        <div className="card-container">
+          {iceBreakers.map((ice) => (
+            <div className="card-item-container" key={ice.id}>
+              <IceCard
+                content={ice.content}
+                tags={ice.tags}
+                flames={ice.flames}
+                key={ice.id}
+                id={ice.id}
+                removeIntro={removeIntro}
+                updateIcebreaker={() =>
+                  updateIcebreaker(ice.id, ice.flames + 1)
+                }
+              />
+            </div>
+          ))}
+          <div className="more-btn-primary">
+            <div className="more-btn-container">
+              <MoreButton nextPage={handleNextPage} />
+            </div>
+          </div>
         </div>
-      ))}
-      <div className="more-btn-primary">
-        <div className="more-btn-container">
-          <MoreButton nextPage={handleNextPage} />
-        </div>
-      </div>
-    </div>
+      ) : (
+        <>
+          <h3>No IceBreakers</h3>
+          <h3>to add click "New IceBreaker" </h3>
+        </>
+      )}
+    </>
   );
 }
 

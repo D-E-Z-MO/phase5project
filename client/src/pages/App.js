@@ -7,10 +7,11 @@ import Login from "../pages/Login";
 import Home from "../pages/Home";
 import SignUpForm from "../components/SignupForm";
 import IcebreakerList from "./IcebreakerList.js";
+import IcebreakersForm from "../components/IcebreakersForm.js";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [seeIceBreakers, setIceBreakers] = useState("");
+  const [seeIceBreakers, setIceBreakers] = useState([]);
   const history = useHistory();
 
   // handle auth
@@ -34,12 +35,7 @@ function App() {
     <>
       {user ? (
         <div>
-          <NavBar
-            seeIceBreakers={seeIceBreakers}
-            setIceBreakers={setIceBreakers}
-            user={user}
-            setUser={setUser}
-          />
+          <NavBar user={user} setUser={setUser} />
           <main>
             <Switch>
               <Route exact path="/">
@@ -49,10 +45,18 @@ function App() {
                 <Home user={user} />
               </Route>
               <Route path="/newicebreakers">
-                <NewIcebreaker user={user} />
+                <IcebreakersForm
+                  user={user}
+                  addIcebreaker={addIceBreaker}
+                  setIceBreakers={setIceBreakers}
+                />
               </Route>
               <Route path="/icebreakers">
-                <IcebreakerList user={user} addIcebreaker={addIceBreaker} />
+                <IcebreakerList
+                  user={user}
+                  setIceBreakers={setIceBreakers}
+                  addIcebreaker={addIceBreaker}
+                />
               </Route>
             </Switch>
           </main>

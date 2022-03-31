@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "./FlipCard.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ResponseModal from "./ResponseModal";
 
-function FlipCard({
+function IceCard({
   content,
   flames,
   id,
@@ -13,17 +12,12 @@ function FlipCard({
   user,
   tags,
 }) {
-  const [modalShow, setModalShow] = useState(false);
-
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
         <div className="flip-card-front">
           <h2>Flip a card to see the intro</h2>
-          <h3>
-            {" "}
-            Topics: <p>{tags}</p>
-          </h3>
+          <h3> Topics: {tags}</h3>
         </div>
         <div className="flip-card-back">
           <h2>Type: {tags}</h2>
@@ -32,21 +26,13 @@ function FlipCard({
           <button className="primary" onClick={updateIcebreaker}>
             Add flame
           </button>
-          <button variant="primary" onClick={() => setModalShow(true)}>
-            Leave a response
+          <button className="primary" onClick={removeIntro}>
+            Delete
           </button>
-          <ResponseModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            icebreaker={content}
-            user={user}
-            id={id}
-            seeIceBreakers={seeIceBreakers}
-          />
         </div>
       </div>
     </div>
   );
 }
 
-export { FlipCard };
+export { IceCard };

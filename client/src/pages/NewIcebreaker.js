@@ -4,7 +4,7 @@ import "../components/FlipCard.css";
 import MoreButton from "../components/MoreButton.js";
 import { FlipCard } from "../components/FlipCard.js";
 
-function NewIcebreakerList() {
+function NewIcebreakerList({ user }) {
   let initialPage = 0;
   const [seeIceBreakers, setIceBreakers] = useState([]);
   const [currentPage, setPage] = useState(initialPage);
@@ -55,13 +55,16 @@ function NewIcebreakerList() {
   return (
     <div className="card-container">
       {Array.from(intros).map((ice) => (
-        <div className="card-item-container">
+        <div className="card-item-container" key={ice.id}>
           <FlipCard
             content={ice.content}
             tags={ice.tags}
             flames={ice.flames}
             key={ice.id}
+            id={ice.id}
+            user={user}
             removeIntro={removeIntro}
+            seeIceBreakers={seeIceBreakers}
             updateIcebreaker={() => updateIcebreaker(ice.id, ice.flames + 1)}
           />
         </div>

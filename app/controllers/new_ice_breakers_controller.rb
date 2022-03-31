@@ -1,6 +1,6 @@
 class NewIceBreakersController < ApplicationController
   def index
-    render json: NewIceBreaker.all
+    render json: NewIceBreaker.all, include: :response
   end
 
   def show 

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :icebreakers
+  has_many :icebreakers, dependent: :destroy
   has_many :responses
   has_many :newIceBreakers, through: :responses
 
