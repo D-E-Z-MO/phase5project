@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app is for nuerodivergent, introverts, or any one who may have difficulty starting conversations and breaking the silence.
 
-Things you may want to cover:
+Things to know
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+* Deployment: Must run Ruby(run rails s) and React(npm start) in seperate terminals
 
 * ...
